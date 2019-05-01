@@ -4,7 +4,7 @@
   "description": "icebreaker app",
   "main": "index.js",
   "scripts": {
-    "start":"node index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "shy attoun",
@@ -12,6 +12,6 @@
   "dependencies": {
     "express": "^4.16.4",
     "joi": "^14.3.1",
-    "pg": "^7.9.0"
+    "pg": "^7.10.0"
   }
 }
