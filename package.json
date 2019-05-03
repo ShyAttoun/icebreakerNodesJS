@@ -4,7 +4,7 @@
   "description": "icebreaker app",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
+    "start": "nodemon index.js",
     "test": "node text.js"
   },
   "author": "shy attoun",
