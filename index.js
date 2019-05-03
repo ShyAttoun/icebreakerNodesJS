@@ -19,7 +19,7 @@ const pickuplines = [
 const funnyfacts = [];
 
 app.get('/',function(req,res){
-    res.redirect('/todo')
+    res.send('hiiiiii')
 
 });
 
