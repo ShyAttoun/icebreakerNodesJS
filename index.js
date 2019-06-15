@@ -20,7 +20,8 @@ const pickuplines = [
 const funnyfacts = [];
 
 app.get('/',function(req,res){
-    res.send('hiiiiii')
+    res.send('welcome to IceBreaker App')
+    res.send('enjoy our API service')
 
 });
 
