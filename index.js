@@ -20,16 +20,14 @@ const pickuplines = [
 const funnyfacts = [];
 
 const interests = [
-   music [],
-  food [],
-  cities[],
-  movies[],
-  lifestyle[]
+  //  music [],
+  // food [],
+  // cities[],
+  // movies[],
+  // lifestyle[]
 ]
 
-app.get('/api/interests',(req,res) => {
-  res.send(interests);
-});
+
 
 app.get('/',function(req,res){
     res.send('welcome to IceBreaker App bro!')
@@ -38,8 +36,11 @@ app.get('/',function(req,res){
 });
 
 app.get('/api/jokes',(req,res) => {
-  res.send('welcome to IceBreaker App bro!')
   res.send(jokes);
+});
+
+app.get('/api/interests',(req,res) => {
+  res.send(interests);
 });
 
 app.get('/api/jokes/:id',(req,res) => {
