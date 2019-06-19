@@ -1,7 +1,15 @@
 const express = require('express');
 const Joi = require('joi');
+const mongoose = require('mongoose');
+const { Pool } = require('pg');
+var bodyParser = require('body-parser')
 const app = express ();
 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+ 
+// parse application/json
+app.use(bodyParser.json())
 
 app.use(express.json());
 
@@ -19,15 +27,26 @@ const pickuplines = [
 
 const funnyfacts = [];
 
-const interests = [
-  //  music [],
-  // food [],
-  // cities[],
-  // movies[],
-  // lifestyle[]
-]
+
+const music = [];
+const food = [];
+const cities = [];
+const movies = [];
 
 
+// const interestSchema = new schema ({
+// title: String
+// });
+
+// const interDetailsSchema = new schema ({
+// name: String,
+// img_url: String
+// });
+
+
+const pool = new Pool ({
+  connectionString: process.env.DATABASE_URL,ssl: true
+  });
 
 app.get('/',function(req,res){
     res.send('welcome to IceBreaker App bro!')
@@ -37,6 +56,15 @@ app.get('/',function(req,res){
 
 app.get('/api/jokes',(req,res) => {
   res.send(jokes);
+  var SQL = "CREATE TABLE Jokes(id SERIAL, setup TEXT, punchline TEXT)"
+    
+  pool.query(SQL,function(err,dbResult){
+  
+    if(err){
+      res.json(err);
+    }else{
+      res.json(dbResult);
+    }
 });
 
 app.get('/api/interests',(req,res) => {
