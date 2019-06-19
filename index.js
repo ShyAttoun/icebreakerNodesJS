@@ -19,13 +19,26 @@ const pickuplines = [
 
 const funnyfacts = [];
 
+const interests = [
+   music [],
+  food [],
+  cities[],
+  movies[],
+  lifestyle[]
+]
+
+app.get('/api/interests',(req,res) => {
+  res.send(interests);
+});
+
 app.get('/',function(req,res){
-    res.send('welcome to IceBreaker App')
+    res.send('welcome to IceBreaker App bro!')
     
 
 });
 
 app.get('/api/jokes',(req,res) => {
+  res.send('welcome to IceBreaker App bro!')
   res.send(jokes);
 });
 
@@ -179,6 +192,7 @@ app.post('/api/funnyfacts',(req,res)=>{
      res.send(funnyfact);
    
    });
+
 
 
  const port = process.env.PORT || 3000;
