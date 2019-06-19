@@ -55,7 +55,7 @@ app.get('/',function(req,res){
 });
 
 app.get('/api/jokes',(req,res) => {
-  res.send(jokes);
+
   var SQL = "CREATE TABLE Jokes(id SERIAL, setup TEXT, punchline TEXT)"
     
   pool.query(SQL,function(err,dbResult){
@@ -63,8 +63,9 @@ app.get('/api/jokes',(req,res) => {
     if(err){
       res.json(err);
     }else{
-      res.json(dbResult);
-    }
+      res.json(dbResult);  
+  }
+  res.send(jokes);
 });
 
 app.get('/api/interests',(req,res) => {
