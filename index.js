@@ -16,7 +16,7 @@ app.use(express.json());
 const pool = new Pool ({
   connectionString: process.env.DATABASE_URL,ssl: true
   });
-
+  
 const jokes = [
   {id: 1, setup: 'what is your name?', punchline : 'daddy boy!!!'},
   {id: 2, setup: 'what is your height?', punchline : '183'},
@@ -55,9 +55,11 @@ app.get('/',function(req,res){
 
 });
 
-app.get('/api/jokes', function (req, res) {
+
+
+app.get('/api/jokes',(req,res) => {
   var SQL = "CREATE TABLE Jokes(id SERIAL, setup TEXT, punchline TEXT)"
-  
+    
   pool.query(SQL,function(err,dbResult){
   
     if(err){
@@ -65,13 +67,8 @@ app.get('/api/jokes', function (req, res) {
     }else{
       res.json(dbResult);
     }
-      res.send(jokes);
-  });
-
-// app.get('/api/jokes',(req,res) => {
-
-//   res.send(jokes);
-// });
+ 
+});
 
 app.get('/api/jokes/:id',(req,res) => {
   const joke = jokes.find(c => c.id === parseInt(req.params.id));
