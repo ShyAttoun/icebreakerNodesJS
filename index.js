@@ -13,6 +13,10 @@ app.use(bodyParser.json())
 
 app.use(express.json());
 
+const pool = new Pool ({
+  connectionString: process.env.DATABASE_URL,ssl: true
+  });
+
 const jokes = [
   {id: 1, setup: 'what is your name?', punchline : 'daddy boy!!!'},
   {id: 2, setup: 'what is your height?', punchline : '183'},
@@ -44,32 +48,29 @@ const movies = [];
 // });
 
 
-const pool = new Pool ({
-  connectionString: process.env.DATABASE_URL,ssl: true
-  });
+
 
 app.get('/',function(req,res){
     res.send('welcome to IceBreaker App bro!')
-    
 
 });
 
-// app.get('/db', function (req, res) {
-//   var SQL = "CREATE TABLE Jokes(id SERIAL, setup TEXT, punchline TEXT)"
+app.get('/api/jokes', function (req, res) {
+  var SQL = "CREATE TABLE Jokes(id SERIAL, setup TEXT, punchline TEXT)"
   
-//   pool.query(SQL,function(err,dbResult){
+  pool.query(SQL,function(err,dbResult){
   
-//     if(err){
-//       res.json(err);
-//     }else{
-//       res.json(dbResult);
-//     }
-//   });
+    if(err){
+      res.json(err);
+    }else{
+      res.json(dbResult);
+    }
+  });
 
-app.get('/api/jokes',(req,res) => {
+// app.get('/api/jokes',(req,res) => {
 
-  res.send(jokes);
-});
+//   res.send(jokes);
+// });
 
 app.get('/api/jokes/:id',(req,res) => {
   const joke = jokes.find(c => c.id === parseInt(req.params.id));
