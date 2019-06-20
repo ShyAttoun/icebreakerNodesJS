@@ -55,11 +55,9 @@ app.get('/',function(req,res){
 
 });
 
-
-
-app.get('/api/jokes',(req,res) => {
+app.get('/db', function (req, res) {
   var SQL = "CREATE TABLE Jokes(id SERIAL, setup TEXT, punchline TEXT)"
-    
+  
   pool.query(SQL,function(err,dbResult){
   
     if(err){
@@ -67,7 +65,19 @@ app.get('/api/jokes',(req,res) => {
     }else{
       res.json(dbResult);
     }
- 
+  });
+
+app.get('/api/jokes',(req,res) => {
+  var SQL = "SELECT * FROM Jokes"
+        
+        pool.query(SQL,function(err,dbResult){
+        
+          if(err){
+            res.json(err);
+          }else{
+            res.json(dbResult.rows);
+          }
+        });
 });
 
 app.get('/api/jokes/:id',(req,res) => {
