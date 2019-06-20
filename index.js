@@ -65,6 +65,7 @@ app.get('/api/jokes', function (req, res) {
     }else{
       res.json(dbResult);
     }
+      res.send(jokes);
   });
 
 // app.get('/api/jokes',(req,res) => {
