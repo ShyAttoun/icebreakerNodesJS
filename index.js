@@ -1,22 +1,13 @@
 const express = require('express');
 const Joi = require('joi');
-const mongoose = require('mongoose');
-const { Pool } = require('pg');
-var bodyParser = require('body-parser')
+
 const app = express ();
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
- 
-// parse application/json
-app.use(bodyParser.json())
+
 
 app.use(express.json());
 
-const pool = new Pool ({
-  connectionString: process.env.DATABASE_URL,ssl: true
-  });
-  
+
 const jokes = [
   {id: 1, setup: 'what is your name?', punchline : 'daddy boy!!!'},
   {id: 2, setup: 'what is your height?', punchline : '183'},
@@ -54,18 +45,6 @@ app.get('/',function(req,res){
     res.send('welcome to IceBreaker App bro!')
 
 });
-
-app.get('/db', function (req, res) {
-  var SQL = "CREATE TABLE Jokes(id SERIAL, setup TEXT, punchline TEXT)"
-  
-  pool.query(SQL,function(err,dbResult){
-  
-    if(err){
-      res.json(err);
-    }else{
-      res.json(dbResult);
-    }
-  });
 
 app.get('/api/jokes',(req,res) => {
 
