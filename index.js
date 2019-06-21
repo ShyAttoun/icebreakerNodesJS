@@ -52,7 +52,7 @@ app.get('/',function(req,res){
 });
 
 app.get('/db', function (req, res) {
-  var SQL = "CREATE TABLE Jokes(id SERIAL, setup TEXT, punchline TEXT)"
+  var SQL = "CREATE TABLE Jokes(setup TEXT, punchline TEXT)"
   
   pool.query(SQL,function(err,dbResult){
   
