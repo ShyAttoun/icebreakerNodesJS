@@ -51,37 +51,11 @@ app.get('/',function(req,res){
 
 });
 
-app.get('/db', function (req, res) {
-  var SQL = "CREATE TABLE Jokes(setup TEXT, punchline TEXT)"
-  
-  pool.query(SQL,function(err,dbResult){
-  
-    if(err){
-      res.json(err);
-    }else{
-      res.json(dbResult);
-    }
-    
-  });
-  res.send(jokes);
-});
-  
-
 app.get('/api/jokes',(req,res) => {
 
-  var SQL = "SELECT * FROM Jokes"
-            
-  pool.query(SQL,function(err,dbResult){
   
-    if(err){
-      res.json(err);
-    }else{
-      res.json(dbResult.rows);
-    }
-  });
   res.send(jokes);
 });
-
 
 app.get('/api/jokes/:id',(req,res) => {
   const joke = jokes.find(c => c.id === parseInt(req.params.id));
