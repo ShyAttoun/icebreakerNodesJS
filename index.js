@@ -55,13 +55,13 @@ app.get('/jokes',(req,res) => {
   // res.send(jokes);
 });
 
-app.get('/api/jokes/:id',(req,res) => {
+app.get('/jokes/:id',(req,res) => {
   const joke = jokes.find(c => c.id === parseInt(req.params.id));
   if (!joke) return res.status(404).send('the course coudlnt be found');
   res.send(joke)
 });
 
-app.delete('/api/jokes/:id',(req,res) => {
+app.delete('/jokes/:id',(req,res) => {
   //checks is the adress exists
   const joke = jokes.find(c => c.id === parseInt(req.params.id));
   if (!joke) return res.status(404).send('the course coudlnt be found');
@@ -75,7 +75,7 @@ app.delete('/api/jokes/:id',(req,res) => {
 
 });
 
-app.post('/api/jokes',(req,res)=>{
+app.post('/jokes',(req,res)=>{
 
   const {error} = validateCourse(req.body); // result.error
   if (error) return res.status(400).send(error.details[0].message);
@@ -102,7 +102,7 @@ app.post('/api/jokes',(req,res)=>{
   });
 
 
-  app.put('/api/jokes/:id',(req,res) => {
+  app.put('/jokes/:id',(req,res) => {
     const joke = jokes.find(c => c.id === parseInt(req.params.id));
      if (!joke) return res.status(404).send('the course coudlnt be found');
     
