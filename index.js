@@ -21,13 +21,14 @@ const cities = [];
 const movies = [];
 
 app.get('/',function(req,res){
-    res.send('welcome to IceBreaker App bro!')});
+    res.send('welcome to IceBreaker App bro!')
+  });
 
     const pool = new Pool ({
       connectionString: process.env.DATABASE_URL,ssl: true
       });
       
-  app.get('/db', function (req, res) {
+  app.get('/api', function (req, res) {
       var SQL = "CREATE TABLE Jokes(id SERIAL, setup TEXT, punchline TEXT)"
       
       pool.query(SQL,function(err,dbResult){
@@ -41,7 +42,18 @@ app.get('/',function(req,res){
     });
 
 app.get('/api/jokes',(req,res) => {
-  res.send(jokes);});
+  var SQL = "SELECT * FROM Jokes"
+            
+  pool.query(SQL,function(err,dbResult){
+  
+    if(err){
+      res.json(err);
+    }else{
+      res.json(dbResult.rows);
+    }
+  });
+  res.send(jokes);
+});
 
 app.get('/api/jokes/:id',(req,res) => {
   const joke = jokes.find(c => c.id === parseInt(req.params.id));
