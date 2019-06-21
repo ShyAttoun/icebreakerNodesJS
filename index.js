@@ -20,9 +20,10 @@ const food = [];
 const cities = [];
 const movies = [];
 
+
+
 app.get('/',function(req,res){
-    res.send('welcome to IceBreaker App bro!')
-  });
+    res.send('welcome to IceBreaker App bro!')});
 
     const pool = new Pool ({
       connectionString: process.env.DATABASE_URL,ssl: true
@@ -39,29 +40,17 @@ app.get('/',function(req,res){
           res.json(dbResult);
         }
       });
-    });
+      });
+app.get('/api/jokes',(req,res) => {
+  res.send(jokes);});
 
-app.get('/jokes',(req,res) => {
-  var SQL = "SELECT * FROM Jokes"
-            
-  pool.query(SQL,function(err,dbResult){
-  
-    if(err){
-      res.json(err);
-    }else{
-      res.json(dbResult.rows);
-    }
-  });
-  // res.send(jokes);
-});
-
-app.get('/jokes/:id',(req,res) => {
+app.get('/api/jokes/:id',(req,res) => {
   const joke = jokes.find(c => c.id === parseInt(req.params.id));
   if (!joke) return res.status(404).send('the course coudlnt be found');
   res.send(joke)
 });
 
-app.delete('/jokes/:id',(req,res) => {
+app.delete('/api/jokes/:id',(req,res) => {
   //checks is the adress exists
   const joke = jokes.find(c => c.id === parseInt(req.params.id));
   if (!joke) return res.status(404).send('the course coudlnt be found');
@@ -75,7 +64,7 @@ app.delete('/jokes/:id',(req,res) => {
 
 });
 
-app.post('/jokes',(req,res)=>{
+app.post('/api/jokes',(req,res)=>{
 
   const {error} = validateCourse(req.body); // result.error
   if (error) return res.status(400).send(error.details[0].message);
@@ -102,7 +91,7 @@ app.post('/jokes',(req,res)=>{
   });
 
 
-  app.put('/jokes/:id',(req,res) => {
+  app.put('/api/jokes/:id',(req,res) => {
     const joke = jokes.find(c => c.id === parseInt(req.params.id));
      if (!joke) return res.status(404).send('the course coudlnt be found');
     
