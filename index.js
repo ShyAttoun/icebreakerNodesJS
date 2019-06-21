@@ -91,6 +91,15 @@ app.post('/api/jokes',(req,res)=>{
 
   var SQL = "INSERT INTO Jokes(setup,punchline) VALUES($1,$2);"
   var values = [setup,punchline]
+
+  pool.query(SQL,values,function(err,dbResult){
+          
+    if(err){
+      res.json(err);
+    }else{
+      res.json(dbResult);
+    }
+  });
   });
 
 
