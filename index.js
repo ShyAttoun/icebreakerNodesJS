@@ -61,7 +61,10 @@ app.get('/db', function (req, res) {
     }else{
       res.json(dbResult);
     }
+    
   });
+  res.send(jokes);
+});
   
 
 app.get('/api/jokes',(req,res) => {
@@ -78,6 +81,7 @@ app.get('/api/jokes',(req,res) => {
   });
   res.send(jokes);
 });
+
 
 app.get('/api/jokes/:id',(req,res) => {
   const joke = jokes.find(c => c.id === parseInt(req.params.id));
