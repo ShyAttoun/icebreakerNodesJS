@@ -41,7 +41,7 @@ app.get('/',function(req,res){
       });
     });
 
-app.get('/api/jokes',(req,res) => {
+app.get('/jokes',(req,res) => {
   var SQL = "SELECT * FROM Jokes"
             
   pool.query(SQL,function(err,dbResult){
@@ -52,7 +52,7 @@ app.get('/api/jokes',(req,res) => {
       res.json(dbResult.rows);
     }
   });
-  res.send(jokes);
+  // res.send(jokes);
 });
 
 app.get('/api/jokes/:id',(req,res) => {
