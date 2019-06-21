@@ -12,50 +12,36 @@ app.use(bodyParser.json())
 
 app.use(express.json());
 
-
-const jokes = [
-  {id: 1, setup: 'what is your name?', punchline : 'daddy boy!!!'},
-  {id: 2, setup: 'what is your height?', punchline : '183'},
-  {id: 3, setup: 'what is your wieght?', punchline : '82'},
-];
-
-const pickuplines = [
-  {id: 1, setup: 'I`d walk a million miles over broken glass just to meet the guy that fucked you last.'},
-  {id: 2, setup: 'You can touch mine if I can touch yours with mine.'},
-  {id: 3, setup: 'I think we have to make love on the front lawn like crazed weasels NOW!'},
-];
-
+const jokes = [];
+const pickuplines = [];
 const funnyfacts = [];
-
-
 const music = [];
 const food = [];
 const cities = [];
 const movies = [];
 
-
-// const interestSchema = new schema ({
-// title: String
-// });
-
-// const interDetailsSchema = new schema ({
-// name: String,
-// img_url: String
-// });
-
-
-
-
 app.get('/',function(req,res){
-    res.send('welcome to IceBreaker App bro!')
+    res.send('welcome to IceBreaker App bro!')});
 
-});
+    const pool = new Pool ({
+      connectionString: process.env.DATABASE_URL,ssl: true
+      });
+      
+  app.get('/db', function (req, res) {
+      var SQL = "CREATE TABLE Jokes(id SERIAL, setup TEXT, punchline TEXT)"
+      
+      pool.query(SQL,function(err,dbResult){
+      
+        if(err){
+          res.json(err);
+        }else{
+          res.json(dbResult);
+        }
+      });
+    });
 
 app.get('/api/jokes',(req,res) => {
-
-  
-  res.send(jokes);
-});
+  res.send(jokes);});
 
 app.get('/api/jokes/:id',(req,res) => {
   const joke = jokes.find(c => c.id === parseInt(req.params.id));
