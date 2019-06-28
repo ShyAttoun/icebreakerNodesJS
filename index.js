@@ -30,7 +30,7 @@ app.get('/',function(req,res){
       });
       
   app.get('/db', function (req, res) {
-      var SQL = "CREATE TABLE Jokes(id SERIAL,setup TEXT, punchline TEXT)"
+      var SQL = "CREATE TABLE Jokes(id SERIAL, setup TEXT, punchline TEXT)"
       
       pool.query(SQL,function(err,dbResult){6
       
@@ -71,14 +71,12 @@ app.post('/api/jokes',(req,res)=>{
 
   const joker = {
     id: jokes.length + 1,
-  //   setup: req.body.setup,
-  //  punchline: req.body.punchline
+    setup: req.body.setup,
+   punchline: req.body.punchline
   };
   jokes.push(joker);
   res.send(joker);
 
-  var setup = req.query.setup
-  var punchline = req.query.punchline
   var SQL = "INSERT INTO Jokes(setup,punchline) VALUES($1,$2);"
   var values = [setup,punchline]
 
