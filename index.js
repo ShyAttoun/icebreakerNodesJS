@@ -68,19 +68,21 @@ app.post('/api/jokes',(req,res)=>{
 
   const {error} = validateCourse(req.body); // result.error
   if (error) return res.status(400).send(error.details[0].message);
-
+  
+  
   const joker = {
     id: jokes.length + 1,
     setup: req.query.setup,
    punchline: req.query.punchline
+   
   };
   jokes.push(joker);
   res.send(joker);
 
   var SQL = "INSERT INTO Jokes(setup,punchline) VALUES($1,$2);"
-  var values = [setup,punchline]
+  // var values = [setup,punchline]
 
-  pool.query(SQL,values,function(err,dbResult){
+  pool.query(SQL,joker,function(err,dbResult){
           
     if(err){
       res.json(err);
