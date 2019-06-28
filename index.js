@@ -72,8 +72,8 @@ app.post('/api/jokes',(req,res)=>{
   
   const joker = {
     id: jokes.length + 1,
-    setup: req.query.setup,
-   punchline: req.query.punchline
+    setup: req.body.setup,
+   punchline: req.body.punchline
    
   };
   jokes.push(joker);
