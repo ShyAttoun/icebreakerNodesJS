@@ -77,6 +77,8 @@ app.post('/api/jokes',(req,res)=>{
   jokes.push(joker);
   res.send(joker);
 
+  var setup = req.query.setup
+  var punchline = req.query.punchline
   var SQL = "INSERT INTO Jokes(setup,punchline) VALUES($1,$2);"
   var values = [setup,punchline]
 
