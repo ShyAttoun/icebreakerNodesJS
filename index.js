@@ -77,9 +77,12 @@ app.post('/api/jokes',(req,res)=>{
   jokes.push(joker);
   res.send(joker);
 
+  var id = jokes.length + 1
+  var setup = req.query.setup
+  var punchline = req.query.punchline
 
-  var SQL = "INSERT INTO Jokes(setup,punchline) VALUES($1,$2);"
-  var values = [setup,punchline]
+  var SQL = "INSERT INTO Jokes(id,setup,punchline) VALUES($1,$2,$3);"
+  var values = [id,setup,punchline]
 
   pool.query(SQL,values,function(err,dbResult){
           
