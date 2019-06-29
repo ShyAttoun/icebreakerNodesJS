@@ -69,13 +69,13 @@ app.post('/api/jokes',(req,res)=>{
   const {error} = validateCourse(req.body); // result.error
   if (error) return res.status(400).send(error.details[0].message);
 
-  const joker = {
-    id: jokes.length + 1,
-    setup: req.body.setup,
-   punchline: req.body.punchline
-  };
-  jokes.push(joker);
-  res.send(joker);
+  // const joker = {
+  //   id: jokes.length + 1,
+  //   setup: req.body.setup,
+  //  punchline: req.body.punchline
+  // };
+  // jokes.push(joker);
+  // res.send(joker);
 
   var setup = req.query.setup
   var punchline = req.query.punchline
