@@ -2,7 +2,7 @@ const express = require('express');
 const Joi = require('joi');
 const { Pool } = require('pg');
 var bodyParser = require('body-parser')
-const app = express ();
+const app = express();
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -69,13 +69,13 @@ app.post('/api/jokes',(req,res)=>{
   const {error} = validateCourse(req.body); // result.error
   if (error) return res.status(400).send(error.details[0].message);
 
-  const joker = {
-    id: jokes.length + 1,
-    setup: req.body.setup,
-   punchline: req.body.punchline
-  };
-  jokes.push(joker);
-  res.send(joker);
+  // const joker = {
+  //   id: jokes.length + 1,
+  //   setup: req.body.setup,
+  //  punchline: req.body.punchline
+  // };
+  // jokes.push(joker);
+  // res.send(joker);
 
   var SQL = "INSERT INTO Jokes(setup,punchline) VALUES($1,$2);"
   var values = [setup,punchline]
