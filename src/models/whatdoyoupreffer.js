@@ -12,6 +12,11 @@ app.use(bodyParser.json())
 
 app.use(express.json());
 
+
+const music = [];
+const food = [];
+const cities = [];
+const movies = [];
 app.get('/',function(req,res){
     res.send('welcome to IceBreaker App bro!')});
 
@@ -31,3 +36,7 @@ app.get('/',function(req,res){
         }
       });
       });
+
+
+const port = process.env.PORT || 3000;
+app.listen(port,() => console.log(`Listening on port ${port}...`));
