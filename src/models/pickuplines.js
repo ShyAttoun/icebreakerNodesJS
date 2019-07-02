@@ -87,6 +87,10 @@ app.get('/api/pickuplines',(req,res) => {
      
      });
 
+
+const port = process.env.PORT || 3000;
+app.listen(port,() => console.log(`Listening on port ${port}...`));
+
 function validatePickUpLine (pickup){
     const schema = {
       setup: Joi.string().min(1).required(),
