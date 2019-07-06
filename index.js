@@ -23,8 +23,12 @@ const movies = [];
 
 
 app.get('/',function(req,res){
-    res.send('welcome to IceBreaker App bro!')});
+    res.send('welcome to IceBreaker App brrrro!')});
 
+app.get("/jobs",function(req,res){
+res.send('whatttttttttt uppppppp')
+
+});
     const pool = new Pool ({
       connectionString: process.env.DATABASE_URL,ssl: true
       });
@@ -210,8 +214,8 @@ app.post('/api/funnyfacts',(req,res)=>{
 
 
 
- const port = process.env.PORT || 3000;
-  app.listen(port,() => console.log(`Listening on port ${port}...`));
+//  const port = process.env.PORT || 3000;
+//   app.listen(port,() => console.log(`Listening on port ${port}...`));
 
   function validateCourse (joke){
     const schema = {
