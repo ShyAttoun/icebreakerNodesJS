@@ -1,17 +1,18 @@
 const express = require('express');
 const Joi = require('joi');
 const { Pool } = require('pg');
-const mysql = require ('mysql')
+const morgan = require('morgan')
+const mysql = require('mysql')
 var bodyParser = require('body-parser')
 const app = express ();
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+// // parse application/x-www-form-urlencoded
+// app.use(bodyParser.urlencoded({ extended: false }))
  
-// parse application/json
-app.use(bodyParser.json())
+// // parse application/json
+// app.use(bodyParser.json())
 
-app.use(express.json());
+// app.use(express.json());
 
 const jokes = [];
 const pickuplines = [];
