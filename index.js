@@ -51,6 +51,7 @@ app.get('/api/jokes',(req,res) => {
   const connection = mysql.createConnection({
     host:'localhost',
   user: 'root',
+  password: 'fuckyou12',
 database: 'icebreaker_jokes'})
 
 connection.query("SELECT * FROM jokes",(err,rows,fields)=> {
