@@ -49,7 +49,7 @@ app.get('/',function(req,res){
 app.get('/api/jokes',(req,res) => {
 
   const connection = mysql.createConnection({
-    host:'localhost',
+    host:'172.0.0.1',
   user: 'root',
   password: 'fuckyou12',
 database: 'icebreaker_jokes'})
