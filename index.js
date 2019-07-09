@@ -49,7 +49,7 @@ app.get('/',function(req,res){
 app.get('/api/jokes',(req,res) => {
 
   const connection = mysql.createConnection({
-    host:'localhost',
+    host:'https://icebreakerappinc.herokuapp.com/api/jokes',
   user: 'root',
 database: 'jokes'})
 
