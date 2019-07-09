@@ -1,6 +1,7 @@
 const express = require('express');
 const Joi = require('joi');
 const { Pool } = require('pg');
+const mysql = require ('mysql')
 var bodyParser = require('body-parser')
 const app = express ();
 
@@ -25,10 +26,6 @@ const movies = [];
 app.get('/',function(req,res){
     res.send('welcome to IceBreaker App brrrro!')});
 
-// app.get("/jobs",function(req,res){
-// res.send('whatttttttttt uppppppp')
-
-// });
     const pool = new Pool ({
       connectionString: process.env.DATABASE_URL,ssl: true
       });
@@ -46,6 +43,16 @@ app.get('/',function(req,res){
       });
       });
 app.get('/api/jokes',(req,res) => {
+
+  const connection = mysql.createConnection({
+    host:'localhost',
+  user: 'root',
+database: 'jokes'})
+
+connection.query("SELECT * FROM jokes",(err,rows,fields)=> {
+  console.log ("i think we fetched jokes succesfully")
+  res.json(rows)
+})
   res.send(jokes);});
 
 app.get('/api/jokes/:id',(req,res) => {
