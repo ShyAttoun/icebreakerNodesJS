@@ -51,7 +51,7 @@ app.get('/api/jokes',(req,res) => {
   const connection = mysql.createConnection({
     host:'172.0.0.1',
   user: 'root',
-database: 'jokes'})
+database: 'icebreaker_jokes'})
 
 connection.query("SELECT * FROM jokes",(err,rows,fields)=> {
   console.log ("i think we fetched jokes succesfully")
