@@ -1,10 +1,11 @@
 const express = require('express');
 const Joi = require('joi');
 const { Pool } = require('pg');
-const morgan = require('morgan')
-const mysql = require('mysql')
+const mysql = require ('mysql')
 var bodyParser = require('body-parser')
 const app = express ();
+
+app.use(morgan('combined'))
 
 // // parse application/x-www-form-urlencoded
 // app.use(bodyParser.urlencoded({ extended: false }))
@@ -57,25 +58,25 @@ connection.query("SELECT * FROM jokes",(err,rows,fields)=> {
   // res.send(jokes);
 });
 
-app.get('/api/jokes/:id',(req,res) => {
-  const joke = jokes.find(c => c.id === parseInt(req.params.id));
-  if (!joke) return res.status(404).send('the course coudlnt be found');
-  res.send(joke)
-});
+// app.get('/api/jokes/:id',(req,res) => {
+//   const joke = jokes.find(c => c.id === parseInt(req.params.id));
+//   if (!joke) return res.status(404).send('the course coudlnt be found');
+//   res.send(joke)
+// });
 
-app.delete('/api/jokes/:id',(req,res) => {
-  //checks is the adress exists
-  const joke = jokes.find(c => c.id === parseInt(req.params.id));
-  if (!joke) return res.status(404).send('the course coudlnt be found');
+// app.delete('/api/jokes/:id',(req,res) => {
+//   //checks is the adress exists
+//   const joke = jokes.find(c => c.id === parseInt(req.params.id));
+//   if (!joke) return res.status(404).send('the course coudlnt be found');
 
-  //delete part
-  const index = jokes.indexOf(joke);
-  jokes.splice(index,1);
+//   //delete part
+//   const index = jokes.indexOf(joke);
+//   jokes.splice(index,1);
 
-  //returnibg the same course
-  res.send(joke);
+//   //returnibg the same course
+//   res.send(joke);
 
-});
+// });
 
 // app.post('/api/jokes',(req,res)=>{
 
