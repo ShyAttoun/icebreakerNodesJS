@@ -2,6 +2,7 @@ const express = require('express');
 const Joi = require('joi');
 const { Pool } = require('pg');
 const mysql = require ('mysql')
+const morgan = require('morgan')
 var bodyParser = require('body-parser')
 const app = express ();
 
