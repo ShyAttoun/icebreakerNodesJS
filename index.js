@@ -16,13 +16,13 @@ app.use(morgan('combined'))
 
 // app.use(express.json());
 
-const jokes = [];
-const pickuplines = [];
-const funnyfacts = [];
-const music = [];
-const food = [];
-const cities = [];
-const movies = [];
+// const jokes = [];
+// const pickuplines = [];
+// const funnyfacts = [];
+// const music = [];
+// const food = [];
+// const cities = [];
+// const movies = [];
 
 
 
