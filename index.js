@@ -49,7 +49,7 @@ app.get('/',function(req,res){
 app.get('/api/jokes',(req,res) => {
 
   const connection = mysql.createConnection({
-    host:'127.0.0.1',
+    host:'localhost',
   user: 'root',
   password: 'fuckyou12',
 database: 'icebreaker_jokes'})
@@ -227,7 +227,7 @@ connection.query("SELECT * FROM jokes",(err,rows,fields)=> {
 
 
 
- const port = process.env.PORT || 3000;
+ const port = process.env.PORT ;
   app.listen(port,() => console.log(`Listening on port ${port}...`));
 
   function validateCourse (joke){
