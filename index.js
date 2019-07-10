@@ -30,9 +30,9 @@ app.use(morgan('combined'))
 app.get('/',function(req,res){
     res.send('welcome to IceBreaker App brrrro!')});
 
-    // const pool = new Pool ({
-    //   connectionString: process.env.DATABASE_URL,ssl: true
-    //   });
+    const pool = new Pool ({
+      connectionString: process.env.DATABASE_URL,ssl: true
+      });
 
 app.get('/api/jokes',(req,res) => {
   const connection = mysql.createConnection({
