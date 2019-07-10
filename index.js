@@ -15,7 +15,7 @@ app.use(morgan('combined'))
 // // parse application/json
 // app.use(bodyParser.json())
 
-// app.use(express.json());
+ app.use(express.json());
 
 // const jokes = [];
 // const pickuplines = [];
@@ -48,7 +48,7 @@ app.get('/',function(req,res){
   //     });
   //     });
 
-app.get('/api/jokes/:id',(req,res) => {
+app.get('/api/jokes',(req,res) => {
   const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
