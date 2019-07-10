@@ -7,6 +7,7 @@ app.use(morgan('combined'))
 
 app.get('/',(req,res)=> {
   res.send("welcome to my world!")
+  res.end()
 })
 
 app.get('/jokes/:id', (req, res) => {
