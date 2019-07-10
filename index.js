@@ -15,7 +15,7 @@ app.use(morgan('combined'))
 // // parse application/json
 // app.use(bodyParser.json())
 
-// app.use(express.json());
+app.use(express.json());
 
 // const jokes = [];
 // const pickuplines = [];
@@ -25,14 +25,14 @@ app.use(morgan('combined'))
 // const cities = [];
 // const movies = [];
 
-
+const pool = new Pool ({
+  connectionString: process.env.DATABASE_URL,ssl: true
+  });
 
 app.get('/',function(req,res){
     res.send('welcome to IceBreaker App brrrro!')});
 
-    const pool = new Pool ({
-      connectionString: process.env.DATABASE_URL,ssl: true
-      });
+    
 
 app.get('/api/jokes',(req,res) => {
   const connection = mysql.createConnection({
@@ -213,8 +213,8 @@ app.get('/api/jokes',(req,res) => {
 
 
 
-//  const port = process.env.PORT || 3000;
-//   app.listen(port,() => console.log(`Listening on port ${port}...`));
+ const port = process.env.PORT || 3000;
+  app.listen(port,() => console.log(`Listening on port ${port}...`));
 
 //   function validateCourse (joke){
 //     const schema = {
