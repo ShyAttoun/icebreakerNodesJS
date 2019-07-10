@@ -2,9 +2,9 @@
   "name": "icebreakernodesjs",
   "version": "1.0.0",
   "description": "icebreaker app",
-  "main": "temp.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node temp",
+    "start": "node index",
     "test": "node text.js"
   },
   "author": "shy attoun",

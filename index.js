@@ -36,10 +36,10 @@ app.get('/',function(req,res){
 
 app.get('/api/jokes',(req,res) => {
   const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'fuckyou12',
-    database: 'icebreaker_jokes'
+    host: 'us-cdbr-iron-east-02.cleardb.net',
+    user: 'b912d8ed161fd4',
+    password: 'f75edef7',
+    database: 'heroku_b01e38876183963'
   })
   const userId = req.params.id
   const queryString = "SELECT * FROM jokes"
