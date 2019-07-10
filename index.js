@@ -30,9 +30,9 @@ app.use(morgan('combined'))
 app.get('/',function(req,res){
     res.send('welcome to IceBreaker App brrrro!')});
 
-    const pool = new Pool ({
-      connectionString: process.env.DATABASE_URL,ssl: true
-      });
+    // const pool = new Pool ({
+    //   connectionString: process.env.DATABASE_URL,ssl: true
+    //   });
 
 app.get('/api/jokes',(req,res) => {
   const connection = mysql.createConnection({
@@ -59,11 +59,11 @@ app.get('/api/jokes',(req,res) => {
     res.json(jokes)
   })
 
-app.get('/api/jokes/:id',(req,res) => {
-  const joke = jokes.find(c => c.id === parseInt(req.params.id));
-  if (!joke) return res.status(404).send('the course coudlnt be found');
-  res.send(joke)
-});
+// app.get('/api/jokes/:id',(req,res) => {
+//   const joke = jokes.find(c => c.id === parseInt(req.params.id));
+//   if (!joke) return res.status(404).send('the course coudlnt be found');
+//   res.send(joke)
+// });
 
 // app.delete('/api/jokes/:id',(req,res) => {
 //   //checks is the adress exists
