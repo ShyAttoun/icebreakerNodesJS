@@ -37,7 +37,7 @@ app.get('/',function(req,res){
   // app.get('/db', function (req, res) {
   //     var SQL = "CREATE TABLE Jokes(id SERIAL, setup TEXT, punchline TEXT)"
       
-  //     pool.query(SQL,function(err,dbResult){6
+  //     pool.query(SQL,function(err,dbResult){
       
   //       if(err){
   //         res.json(err);
@@ -46,80 +46,84 @@ app.get('/',function(req,res){
   //       }
   //     });
   //     });
+
 app.get('/api/jokes',(req,res) => {
 
-  const connection = mysql.createConnection({
-    host:'localhost',
-  user: 'root',
-  password: 'fuckyou12',
-database: 'icebreaker_jokes'})
+  const userId = req.params.id
+  const queryString = "SELECT * FROM jokes"
+  connection.query(queryString, [userId], (err, rows, fields) => {
+    if (err) {
+      console.log("Failed to query for users: " + err)
+      res.sendStatus(500)
+      return
+      // throw err
+    }
 
-connection.query("SELECT * FROM jokes",(err,rows,fields)=> {
-  console.log ("i think we fetched jokes succesfully")
-  res.json(rows)
-})
-  // res.send(jokes);
+    console.log("I think we fetched users successfully")
+
+    const jokes = rows.map((row) => {
+      return {setup: row.setup, punchline: row.punchline}
+    })
+    res.json(jokes)
+  })
+app.get('/api/jokes/:id',(req,res) => {
+  const joke = jokes.find(c => c.id === parseInt(req.params.id));
+  if (!joke) return res.status(404).send('the course coudlnt be found');
+  res.send(joke)
 });
 
-// app.get('/api/jokes/:id',(req,res) => {
-//   const joke = jokes.find(c => c.id === parseInt(req.params.id));
-//   if (!joke) return res.status(404).send('the course coudlnt be found');
-//   res.send(joke)
-// });
+app.delete('/api/jokes/:id',(req,res) => {
+  //checks is the adress exists
+  const joke = jokes.find(c => c.id === parseInt(req.params.id));
+  if (!joke) return res.status(404).send('the course coudlnt be found');
 
-// app.delete('/api/jokes/:id',(req,res) => {
-//   //checks is the adress exists
-//   const joke = jokes.find(c => c.id === parseInt(req.params.id));
-//   if (!joke) return res.status(404).send('the course coudlnt be found');
+  //delete part
+  const index = jokes.indexOf(joke);
+  jokes.splice(index,1);
 
-//   //delete part
-//   const index = jokes.indexOf(joke);
-//   jokes.splice(index,1);
+  //returnibg the same course
+  res.send(joke);
 
-//   //returnibg the same course
-//   res.send(joke);
+});
 
-// });
+app.post('/api/jokes',(req,res)=>{
 
-// app.post('/api/jokes',(req,res)=>{
+  const {error} = validateCourse(req.body); // result.error
+  if (error) return res.status(400).send(error.details[0].message);
 
-//   const {error} = validateCourse(req.body); // result.error
-//   if (error) return res.status(400).send(error.details[0].message);
+  // const joker = {
+  //   id: jokes.length + 1,
+  //   setup: req.body.setup,
+  //  punchline: req.body.punchline
+  // };
+  // jokes.push(joker);
+  // res.send(joker);
 
-//   const joker = {
-//     id: jokes.length + 1,
-//     setup: req.body.setup,
-//    punchline: req.body.punchline
-//   };
-//   jokes.push(joker);
-//   res.send(joker);
+  // var SQL = "INSERT INTO Jokes(setup,punchline) VALUES($1,$2);"
+  // var values = [setup,punchline]
 
-//   var SQL = "INSERT INTO Jokes(setup,punchline) VALUES($1,$2);"
-//   var values = [setup,punchline]
-
-//   pool.query(SQL,values,function(err,dbResult){
+  // pool.query(SQL,values,function(err,dbResult){
           
-//     if(err){
-//       res.json(err);
-//     }else{
-//       res.json(dbResult);
-//     }
-//   });
-//   });
+  //   if(err){
+  //     res.json(err);
+  //   }else{
+  //     res.json(dbResult);
+  //   }
+  // });
+  });
 
-
-//   app.put('/api/jokes/:id',(req,res) => {
-//     const joke = jokes.find(c => c.id === parseInt(req.params.id));
-//      if (!joke) return res.status(404).send('the course coudlnt be found');
+  // app.put('/api/jokes/:id',(req,res) => {
+  //   const joke = jokes.find(c => c.id === parseInt(req.params.id));
+  //    if (!joke) return res.status(404).send('the course coudlnt be found');
     
-//      const {error} = validateCourse(req.body); // result.error
-//      if (error) return res.status(400).send(error.details[0].message);
+  //    const {error} = validateCourse(req.body); // result.error
+  //    if (error) return res.status(400).send(error.details[0].message);
        
-//      joke.name = req.body.name;
-//      res.send(joke);
-//    });
-// //--------------------------------------------------------------//
-// //same method different
+  //    joke.name = req.body.name;
+  //    res.send(joke);
+  //  });
+//--------------------------------------------------------------//
+//same method different
 //    app.get('/api/pickuplines',(req,res) => {
 //     res.send(pickuplines);
 //   });
@@ -227,7 +231,7 @@ connection.query("SELECT * FROM jokes",(err,rows,fields)=> {
 
 
 
- const port = process.env.PORT ;
+ const port = process.env.PORT || 3000;
   app.listen(port,() => console.log(`Listening on port ${port}...`));
 
   function validateCourse (joke){
@@ -254,3 +258,4 @@ connection.query("SELECT * FROM jokes",(err,rows,fields)=> {
     };
     return Joi.validate(funnyfact,schema);
   }
+})
