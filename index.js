@@ -28,7 +28,8 @@ app.use(morgan('combined'))
 
 
 app.get('/',function(req,res){
-    res.send('welcome to IceBreaker App brrrro!')});
+    res.send('welcome to IceBreaker App brrrro!')
+  });
 
     // const pool = new Pool ({
     //   connectionString: process.env.DATABASE_URL,ssl: true
@@ -47,7 +48,7 @@ app.get('/',function(req,res){
   //     });
   //     });
 
-app.get('/api/jokes',(req,res) => {
+app.get('/api/jokes/:id',(req,res) => {
   const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
