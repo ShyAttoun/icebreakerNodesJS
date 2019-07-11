@@ -45,12 +45,12 @@ router.post('/joke_create', (req, res) => {
     const queryString = "INSERT INTO jokes (setup, punchline) VALUES (?, ?)"
     getConnection().query(queryString, [setup, punchline], (err, results, fields) => {
       if (err) {
-        console.log("Failed to insert new user: " + err)
+        console.log("Failed to insert new joke: " + err)
         res.sendStatus(500)
         return
       }
   
-      console.log("Inserted a new user with id: ", results.insertId);
+      console.log("Inserted a new joke with id: ", results.insertId);
       res.end()
     })
   })
@@ -61,16 +61,16 @@ router.get('/user/:id', (req, res) => {
     const connection = getConnection()
 
     const userId = req.params.id
-    const queryString = "SELECT * FROM users WHERE id = ?"
+    const queryString = "SELECT * FROM jokes WHERE id = ?"
     connection.query(queryString, [userId], (err, rows, fields) => {
         if (err) {
-        console.log("Failed to query for users: " + err)
+        console.log("Failed to query for jokes: " + err)
         res.sendStatus(500)
         return
         // throw err
         }
 
-        console.log("I think we fetched users successfully")
+        console.log("I think we fetched jokes successfully")
 
         const jokes = rows.map((row) => {
         return {setup: row.setup, punchline: row.punchline}
