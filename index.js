@@ -14,6 +14,9 @@ app.use(router)
 const router1 = require ('./routes/pickuplines.js')
 app.use(router1)
 
+const router2 = require ('./routes/funnyfacts.js')
+app.use(router2)
+
 app.get("/", (req, res) => {
   console.log("Responding to root route")
   res.send("Hello from ROOOOOT")
