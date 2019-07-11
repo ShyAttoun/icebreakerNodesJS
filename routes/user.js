@@ -16,6 +16,12 @@ router.get("/jokes", (req, res) => {
       if (err) {
         console.log("Failed to query for jokes: " + err)
         res.sendStatus(500)
+        console.log({
+          host            : process.env.MYSQL_HOST,
+          user            : process.env.MYSQL_USER,
+          password        : process.env.MYSQL_SECRET,
+          database        : process.env.MYSQL_DB
+       })
         return
       }
       res.json(rows)
@@ -27,7 +33,6 @@ const pool = mysql.createPool({
   host: 'localhost',
     user: 'root',
     password: 'fuckyou12',
-    port: '3306',
     database: 'icebreaker_jokes'
 })
 
