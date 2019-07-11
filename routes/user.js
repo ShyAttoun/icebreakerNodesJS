@@ -10,18 +10,20 @@ router.get('/messages', (req, res) => {
 })
 
 router.get("/jokes", (req, res) => {
+
+  console.log({
+    host            : process.env.MYSQL_HOST,
+    user            : process.env.MYSQL_USER,
+    password        : process.env.MYSQL_SECRET,
+    database        : process.env.MYSQL_DB
+ })
     const connection = getConnection()
     const queryString = "SELECT * FROM jokes"
     connection.query(queryString, (err, rows, fields) => {
       if (err) {
         console.log("Failed to query for jokes: " + err)
         res.sendStatus(500)
-        console.log({
-          host            : process.env.MYSQL_HOST,
-          user            : process.env.MYSQL_USER,
-          password        : process.env.MYSQL_SECRET,
-          database        : process.env.MYSQL_DB
-       })
+      
         return
       }
       res.json(rows)
@@ -34,6 +36,8 @@ const pool = mysql.createPool({
     user: 'root',
     password: 'fuckyou12',
     database: 'icebreaker_jokes'
+
+    
 })
 
 function getConnection() {
