@@ -5,7 +5,7 @@ const router = express.Router()
 
 
 
-router.route.get("/pickuplines", (req, res) => {
+router.get("/pickuplines", (req, res) => {
     const connection = getConnection()
     const queryString = "SELECT * FROM pickuplines"
     connection.query(queryString, (err, rows, fields) => {
