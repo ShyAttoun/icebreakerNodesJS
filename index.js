@@ -11,6 +11,9 @@ app.use(morgan('short'))
 const router = require('./routes/jokes.js')
 app.use(router)
 
+const router1 = require ('./routes/pickuplines.js')
+app.use(router1)
+
 app.get("/", (req, res) => {
   console.log("Responding to root route")
   res.send("Hello from ROOOOOT")
