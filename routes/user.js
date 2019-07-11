@@ -39,10 +39,11 @@ router.post('/joke_create', (req, res) => {
     console.log("How do we get the form data???")
   
     console.log("setup: " + req.body.create_setup)
+    console.log("punchline: " + req.body.create_punchline)
     const setup = req.body.create_setup
     const punchline = req.body.create_punchline
   
-    const queryString = "INSERT INTO jokes (setup, punchline) VALUES (?, ?)"
+    const queryString = "INSERT INTO jokes (create_setup, create_punchline) VALUES (?, ?)"
     getConnection().query(queryString, [setup, punchline], (err, results, fields) => {
       if (err) {
         console.log("Failed to insert new joke: " + err)
