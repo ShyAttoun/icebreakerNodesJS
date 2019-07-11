@@ -4,7 +4,8 @@ const mysql = require('mysql')
 const router = express.Router()
 
 
-router.get("/pickuplines", (req, res) => {
+
+router.route.get("/pickuplines", (req, res) => {
     const connection = getConnection()
     const queryString = "SELECT * FROM pickuplines"
     connection.query(queryString, (err, rows, fields) => {
