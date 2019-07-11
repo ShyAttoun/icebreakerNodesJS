@@ -43,7 +43,7 @@ router.post('/joke_create', (req, res) => {
     const setup = req.body.create_setup
     const punchline = req.body.create_punchline
   
-    const queryString = "INSERT INTO jokes (create_setup, create_punchline) VALUES (?, ?)"
+    const queryString = "INSERT INTO jokes (setup,punchline) VALUES (?, ?)"
     getConnection().query(queryString, [setup, punchline], (err, results, fields) => {
       if (err) {
         console.log("Failed to insert new joke: " + err)
@@ -56,7 +56,7 @@ router.post('/joke_create', (req, res) => {
     })
   })
   
-router.get('/user/:id', (req, res) => {
+router.get('/jokes/:id', (req, res) => {
     console.log("Fetching user with id: " + req.params.id)
 
     const connection = getConnection()
