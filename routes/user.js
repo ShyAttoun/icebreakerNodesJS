@@ -27,6 +27,7 @@ const pool = mysql.createPool({
   host: 'localhost',
     user: 'root',
     password: 'fuckyou12',
+    port: '3006',
     database: 'icebreaker_jokes'
 })
 
