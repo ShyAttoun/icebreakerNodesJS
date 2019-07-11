@@ -12,7 +12,7 @@ app.use(express.static('./public'))
 
 app.use(morgan('short'))
 
-const router = require('./routes/user.js')
+const router = require('./routes/index.js')
 
 app.use(router)
 
