@@ -9,12 +9,12 @@ router.get('/messages', (req, res) => {
   res.end()
 })
 
-router.get("/users", (req, res) => {
+router.get("/jokes", (req, res) => {
     const connection = getConnection()
-    const queryString = "SELECT * FROM users"
+    const queryString = "SELECT * FROM jokes"
     connection.query(queryString, (err, rows, fields) => {
       if (err) {
-        console.log("Failed to query for users: " + err)
+        console.log("Failed to query for jokes: " + err)
         res.sendStatus(500)
         return
       }
