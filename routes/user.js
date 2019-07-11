@@ -10,13 +10,6 @@ router.get('/messages', (req, res) => {
 })
 
 router.get("/jokes", (req, res) => {
-
-  console.log({
-    host            : process.env.MYSQL_HOST,
-    user            : process.env.MYSQL_USER,
-    password        : process.env.MYSQL_SECRET,
-    database        : process.env.MYSQL_DB
- })
     const connection = getConnection()
     const queryString = "SELECT * FROM jokes"
     connection.query(queryString, (err, rows, fields) => {
@@ -32,12 +25,10 @@ router.get("/jokes", (req, res) => {
 
 const pool = mysql.createPool({
     connectionLimit: 10,
-  host: 'localhost',
-    user: 'root',
-    password: 'fuckyou12',
-    database: 'icebreaker_jokes'
-
-    
+  host: 'us-cdbr-iron-east-02.cleardb.net',
+    user: 'b912d8ed161fd4',
+    password: 'f75edef7',
+    database: 'heroku_b01e38876183963'
 })
 
 function getConnection() {
