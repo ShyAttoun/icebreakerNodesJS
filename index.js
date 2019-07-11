@@ -1,13 +1,13 @@
 const express = require('express');
 const app = express ();
 // const Joi = require('joi');
-const { Pool } = require('pg');
+// const { Pool } = require('pg');
 const mysql = require ('mysql')
 const morgan = require('morgan')
 // var bodyParser = require('body-parser')
 
 
-app.use(morgan('combined'))
+app.use(morgan('short'))
 
 // // parse application/x-www-form-urlencoded
 // app.use(bodyParser.urlencoded({ extended: false }))
@@ -15,7 +15,7 @@ app.use(morgan('combined'))
 // // parse application/json
 // app.use(bodyParser.json())
 
-app.use(express.json());
+// app.use(express.json());
 
 // const jokes = [];
 // const pickuplines = [];
@@ -25,9 +25,9 @@ app.use(express.json());
 // const cities = [];
 // const movies = [];
 
-const pool = new Pool ({
-  connectionString: process.env.DATABASE_URL,ssl: true
-  });
+// const pool = new Pool ({
+//   connectionString: process.env.DATABASE_URL,ssl: true
+//   });
 
 app.get('/',function(req,res){
     res.send('welcome to IceBreaker App brrrro!')});
@@ -36,10 +36,10 @@ app.get('/',function(req,res){
 
 app.get('/api/jokes',(req,res) => {
   const connection = mysql.createConnection({
-    host: 'us-cdbr-iron-east-02.cleardb.net',
-    user: 'b912d8ed161fd4',
-    password: 'f75edef7',
-    database: 'heroku_b01e38876183963'
+    host: 'localhost',
+    user: 'root',
+    password: 'fuckyou12',
+    database: 'icebreaker_jokes'
   })
   const userId = req.params.id
   const queryString = "SELECT * FROM jokes"
