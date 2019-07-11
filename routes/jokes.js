@@ -4,11 +4,6 @@ const mysql = require('mysql')
 const router = express.Router()
 
 
-router.get('/messages', (req, res) => {
-  console.log("11111111")
-  res.end()
-})
-
 router.get("/jokes", (req, res) => {
     const connection = getConnection()
     const queryString = "SELECT * FROM jokes"
@@ -16,13 +11,11 @@ router.get("/jokes", (req, res) => {
       if (err) {
         console.log("Failed to query for jokes: " + err)
         res.sendStatus(500)
-      
         return
       }
       res.json(rows)
     })
   })
-
 const pool = mysql.createPool({
     connectionLimit: 10,
   host: 'us-cdbr-iron-east-02.cleardb.net',
@@ -30,13 +23,11 @@ const pool = mysql.createPool({
     password: 'f75edef7',
     database: 'heroku_b01e38876183963'
 })
-
 function getConnection() {
     return pool
 }
-
 router.post('/joke_create', (req, res) => {
-    console.log("Trying to create a new user...")
+    console.log("Trying to create a new joke...")
     console.log("How do we get the form data???")
   
     console.log("setup: " + req.body.create_setup)
@@ -51,33 +42,29 @@ router.post('/joke_create', (req, res) => {
         res.sendStatus(500)
         return
       }
-  
       console.log("Inserted a new joke with id: ", results.insertId);
       res.end()
     })
   })
   
 router.get('/jokes/:id', (req, res) => {
-    console.log("Fetching user with id: " + req.params.id)
-
+    console.log("Fetching joke with id: " + req.params.id)
     const connection = getConnection()
 
-    const userId = req.params.id
+    const jokeId = req.params.id
     const queryString = "SELECT * FROM jokes WHERE id = ?"
-    connection.query(queryString, [userId], (err, rows, fields) => {
+    connection.query(queryString, [jokeId], (err, rows, fields) => {
         if (err) {
         console.log("Failed to query for jokes: " + err)
         res.sendStatus(500)
         return
         // throw err
         }
-
         console.log("I think we fetched jokes successfully")
 
         const jokes = rows.map((row) => {
         return {setup: row.setup, punchline: row.punchline}
         })
-
         res.json(jokes)
     })
 })
