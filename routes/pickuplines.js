@@ -36,7 +36,7 @@ router.post('/pickupline_create', (req, res) => {
     const setup = req.body.create_setup
   
   
-    const queryString = "INSERT INTO pickuplines (setup) VALUES (?)"
+    const queryString = "INSERT INTO pickuplines (setup) VALUES (?) WHERE id = ? "
     getConnection().query(queryString, [setup], (err, results, fields) => {
       if (err) {
         console.log("Failed to insert new pickupline: " + err)
