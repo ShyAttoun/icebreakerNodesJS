@@ -36,7 +36,7 @@ router.post('/city_create', (req, res) => {
     console.log("city: " + req.body.create_cityname)
     console.log("city image url: " + req.body.create_imageUrl)
     const city = req.body.create_cityname
-    const imageUrl = req.body.create_cityUrl
+    const imageUrl = req.body.create_imageUrl
   
     const queryString = "INSERT INTO cities (cityName, imageUrl) VALUES (?, ?)"
     getConnection().query(queryString, [city, imageUrl], (err, results, fields) => {
