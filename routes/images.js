@@ -29,9 +29,9 @@ router.post('/image_create', (req, res) => {
     console.log("Trying to create a new image...")
     console.log("How do we get the form data???")
   
-    console.log("imageUrl: " + req.body.create_setup)
+    console.log("imageUrl: " + req.body.create_imageUrl)
     
-    const image = req.body.create_setup
+    const image = req.body.create_imageUrl
    
   
     const queryString = "INSERT INTO images (imageUrl) VALUES (?)"
