@@ -33,7 +33,8 @@ router.post('/city_create', (req, res) => {
     console.log("Trying to create a new city...")
     console.log("How do we get the form data???")
   
-    console.log("First name: " + req.body.create_first_name)
+    console.log("city: " + req.body.create_cityname)
+    console.log("city image url: " + req.body.create_imageUrl)
     const city = req.body.create_cityname
     const imageUrl = req.body.create_cityUrl
   
