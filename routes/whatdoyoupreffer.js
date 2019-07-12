@@ -69,7 +69,7 @@ router.get('/cities/:id', (req, res) => {
         console.log("I think we fetched cities successfully")
 
         const cities = rows.map((row) => {
-        return {city: row.cityName, lastName: row.imageUrl}
+        return {city: row.cityName, imageUrl: row.imageUrl}
         })
 
         res.json(cities)
