@@ -17,6 +17,9 @@ app.use(router1)
 const router2 = require ('./routes/funnyfacts.js')
 app.use(router2)
 
+const router3 = require ('./routes/questions.js')
+app.use(router3)
+
 app.get("/", (req, res) => {
   console.log("Responding to root route")
   res.send("Hello from ROOOOOT")
