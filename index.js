@@ -26,6 +26,9 @@ app.use(router4)
 const router5 = require ('./routes/cities.js')
 app.use(router5)
 
+const router6 = require ('./routes/food.js')
+app.use(router6)
+
 app.get("/", (req, res) => {
   console.log("Responding to root route")
   res.send("Hello from ROOOOOT")
