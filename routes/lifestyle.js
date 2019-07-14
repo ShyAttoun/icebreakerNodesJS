@@ -38,7 +38,7 @@ router.post('/lifestyle_create', (req, res) => {
     const lifestyle = req.body.create_lifestyletype
     const imageUrl = req.body.create_imageUrl
   
-    const queryString = "INSERT INTO lifestyle (lifestyle, imageUrl) VALUES (?, ?)"
+    const queryString = "INSERT INTO lifestyle (lifestyletype, imageUrl) VALUES (?, ?)"
     getConnection().query(queryString, [lifestyle, imageUrl], (err, results, fields) => {
       if (err) {
         console.log("Failed to insert new lifestyle type: " + err)
