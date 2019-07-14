@@ -47,7 +47,7 @@ router.post('/question_create', (req, res) => {
   })
   
 router.get('/questions/:id', (req, res) => {
-    console.log("Fetching joke with id: " + req.params.id)
+    console.log("Fetching question with id: " + req.params.id)
     const connection = getConnection()
 
     const questionId = req.params.id

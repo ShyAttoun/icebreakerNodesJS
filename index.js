@@ -38,6 +38,9 @@ app.use(router8)
 const router9 = require ('./routes/movies.js')
 app.use(router9)
 
+const router10 = require ('./routes/associations.js')
+app.use(router10)
+
 app.get("/", (req, res) => {
   console.log("Responding to root route")
   res.send("Hello from ROOOOOT")
