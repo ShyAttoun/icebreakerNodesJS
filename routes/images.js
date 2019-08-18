@@ -17,10 +17,10 @@ router.get("/images", (req, res) => {
   })
 const pool = mysql.createPool({
     connectionLimit: 10,
-  host: 'us-cdbr-iron-east-02.cleardb.net',
-    user: 'b912d8ed161fd4',
-    password: 'f75edef7',
-    database: 'heroku_b01e38876183963'
+  host: '********************',
+    user: '************',
+    password: '**********',
+    database: '************'
 })
 function getConnection() {
     return pool
